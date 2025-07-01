@@ -4,12 +4,12 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-  "dev": "cross-env NODE_ENV=development tsx server/index.ts",
-  "dev:tailwind": "tailwindcss -i ./client/src/index.css -o ./client/src/output.css --watch",
-  "dev:server": "tsx watch server/index.ts",
-  "dev:client": "vite",
-  "dev:all": "concurrently \"npm run dev:tailwind\" \"npm run dev:server\" \"npm run dev:client\""
-},
+    "dev": "cross-env NODE_ENV=development tsx server/index.ts",
+    "dev:tailwind": "tailwindcss -i ./client/src/index.css -o ./client/src/output.css --watch",
+    "dev:server": "tsx watch server/index.ts",
+    "dev:client": "vite",
+    "dev:all": "concurrently \"npm run dev:tailwind\" \"npm run dev:server\" \"npm run dev:client\""
+  },
   "dependencies": {
     "@google/genai": "^1.7.0",
     "@hookform/resolvers": "^3.10.0",
@@ -48,7 +48,7 @@
     "cmdk": "^1.1.1",
     "connect-pg-simple": "^10.0.0",
     "date-fns": "^3.6.0",
-    "drizzle-orm": "^0.39.1",
+    "drizzle-orm": "^0.39.3",
     "drizzle-zod": "^0.7.0",
     "embla-carousel-react": "^8.6.0",
     "express": "^4.21.2",
