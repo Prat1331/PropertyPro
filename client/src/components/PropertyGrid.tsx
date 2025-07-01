@@ -8,13 +8,18 @@ import type { Property } from "@shared/schema";
 
 export default function PropertyGrid() {
   const { data: properties = [], isLoading } = useQuery<Property[]>({
-    queryKey: ["/api/properties/featured"]
+    queryKey: ["/api/properties/featured"],
+    queryFn: async () => {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/properties/featured`);
+      if (!res.ok) throw new Error("Failed to fetch properties");
+      return res.json();
+    },
   });
 
   return (
     <section id="properties" className="py-20 bg-gray-50">
       <div className="container mx-auto px-6">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -36,7 +41,7 @@ export default function PropertyGrid() {
             ))}
           </div>
         ) : (
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -57,7 +62,7 @@ export default function PropertyGrid() {
           </motion.div>
         )}
 
-        <motion.div 
+        <motion.div
           className="text-center mt-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
