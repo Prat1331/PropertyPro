@@ -1,22 +1,23 @@
-import cors from 'cors';
-
-// before defining any routes
-app.use(cors({
-  origin: '*', // Or use specific origin: 'http://localhost:3000'
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
-
 import express, { type Request, Response, NextFunction } from "express";
+import cors from "cors"; // ✅ still at the top
 import { db } from './db';
 import 'dotenv/config';
 
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
-const app = express();
+const app = express(); // ✅ this must come BEFORE app.use
+
+// ✅ Now this is safe
+app.use(cors({
+  origin: '*', // Or use specific origin: 'http://localhost:3000'
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 
 // ✅ DB Test Route
 app.get("/api/test-db", async (_req, res) => {
