@@ -3,37 +3,39 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
+// Vite configuration
 export default defineConfig(async () => {
   const plugins = [
     react(),
     runtimeErrorOverlay(),
   ];
 
+  // Replit-specific plugin (optional, safe to skip locally)
   if (process.env.NODE_ENV !== "production" && process.env.REPL_ID !== undefined) {
     const { cartographer } = await import("@replit/vite-plugin-cartographer");
     plugins.push(cartographer());
   }
 
   return {
+    root: path.resolve(__dirname, "client"), // 👈 entry point
     plugins,
     resolve: {
       alias: {
-        "@": path.resolve(import.meta.dirname, "client", "src"),
-        "@shared": path.resolve(import.meta.dirname, "shared"),
-        "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+        "@": path.resolve(__dirname, "client", "src"),
+        "@shared": path.resolve(__dirname, "shared"),
+        "@assets": path.resolve(__dirname, "attached_assets"),
       },
     },
-    root: path.resolve(import.meta.dirname, "client"),
     build: {
-      outDir: path.resolve(import.meta.dirname, "dist/public"),
+      outDir: path.resolve(__dirname, "dist/public"),
       emptyOutDir: true,
     },
     server: {
-      port: 3000,              // ✅ dev server port
-      open: true,              // ✅ auto-open browser
+      port: 3000,
+      open: true,
       proxy: {
-        '/api': {
-          target: 'http://localhost:5051', // ✅ backend server
+        "/api": {
+          target: "http://localhost:5051",
           changeOrigin: true,
           secure: false,
         },
