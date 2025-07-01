@@ -1,5 +1,5 @@
 import express, { type Request, Response, NextFunction } from "express";
-import { db } from './db';
+import { db } from './db'; // ✅ correct if using server/db.ts
 import 'dotenv/config';
 
 import { registerRoutes } from "./routes";
