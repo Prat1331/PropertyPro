@@ -1,15 +1,16 @@
 import { pathToFileURL } from "url";
 import express, { type Express } from "express";
 import fs from "fs";
-import path, { dirname, resolve } from "path";
-import { fileURLToPath } from "url";
+import path from "path";
 import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
 import { nanoid } from "nanoid";
 
+// Safe CommonJS fallback for __filename and __dirname
+const __filename = require.main?.filename || "";
+const __dirname = path.dirname(__filename);
+
 const viteLogger = createLogger();
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
@@ -23,10 +24,10 @@ export function log(message: string, source = "express") {
 }
 
 export async function setupVite(app: Express, server: Server) {
-  // ✅ Convert to file URL to allow dynamic ESM import
-  const configPath = pathToFileURL(resolve(__dirname, "../client/vite.config.ts")).href;
+  // ✅ Convert path to file URL for dynamic ESM import
+  const configPath = pathToFileURL(path.resolve(__dirname, "../client/vite.config.ts")).href;
   const configModule = await import(configPath);
-  const viteConfig = await configModule.default();
+  const viteConfig = configModule.default;
 
   const serverOptions = {
     middlewareMode: true,
@@ -49,14 +50,15 @@ export async function setupVite(app: Express, server: Server) {
   });
 
   app.use(vite.middlewares);
+
   app.use("*", async (req, res, next) => {
     const url = req.originalUrl;
 
     try {
-      const clientTemplate = resolve(__dirname, "../client/index.html");
-
+      const clientTemplate = path.resolve(__dirname, "../client/index.html");
       let template = await fs.promises.readFile(clientTemplate, "utf-8");
 
+      // Inject cache-busting query param
       template = template.replace(
         `src="/src/main.tsx"`,
         `src="/src/main.tsx?v=${nanoid()}"`

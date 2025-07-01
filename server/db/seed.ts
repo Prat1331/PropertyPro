@@ -27,7 +27,7 @@ async function seed() {
     {
       title: 'Luxury 3BHK in Sector 15',
       description: 'Spacious apartment with park view, close to metro and malls.',
-      price: 7500000.0,
+      price: '7500000.0', // ✅ if price is TEXT/NUMERIC in schema, use string
       priceType: 'sale',
       propertyType: 'apartment',
       bedrooms: 3,
@@ -46,7 +46,7 @@ async function seed() {
     {
       title: '2BHK for Rent in Sector 9',
       description: 'Modern 2BHK ideal for couples, semi-furnished.',
-      price: 15000.0,
+      price: '15000.0',
       priceType: 'rent',
       propertyType: 'apartment',
       bedrooms: 2,
@@ -65,7 +65,7 @@ async function seed() {
     {
       title: 'PG Rooms for Students',
       description: 'Affordable PG with meals and Wi-Fi, walking distance to college.',
-      price: 6000.0,
+      price: '6000.0',
       priceType: 'pg',
       propertyType: 'pg',
       bedrooms: null,
@@ -122,19 +122,19 @@ async function seed() {
       userId: 'alice.verma',
       preferences: '3BHK, Sector 15, near metro',
       recommendedProperties: ['1', '2'],
-      confidence: 0.92,
+      confidence: '0.92', // ✅ ensure string if schema is TEXT/NUMERIC
     },
     {
       userId: 'rohit.bansal',
       preferences: 'PG in Sector 21D, low budget',
       recommendedProperties: ['3'],
-      confidence: 0.85,
+      confidence: '0.85',
     },
     {
       userId: 'neha.kumar',
       preferences: '2BHK, rent, budget under 20k',
       recommendedProperties: ['2'],
-      confidence: 0.88,
+      confidence: '0.88',
     },
   ]);
   console.log('✅ AI Recommendations inserted.');
