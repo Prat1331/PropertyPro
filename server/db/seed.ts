@@ -6,8 +6,14 @@ import {
   aiRecommendations
 } from '../../shared/schema.js';
 
-
 async function seed() {
+  // Clean old data first
+  await db.delete(aiRecommendations);
+  await db.delete(inquiries);
+  await db.delete(properties);
+  await db.delete(users);
+  console.log('🧹 Old data deleted.');
+
   // Insert users
   await db.insert(users).values([
     { username: 'john_doe', password: 'hashed_password_123' },

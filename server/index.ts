@@ -1,5 +1,5 @@
 import express, { type Request, Response, NextFunction } from "express";
-import { db } from './db'; // ✅ correct if using server/db.ts
+import { db } from './db';
 import 'dotenv/config';
 
 import { registerRoutes } from "./routes";
@@ -20,6 +20,7 @@ app.get("/api/test-db", async (_req, res) => {
   }
 });
 
+// ✅ Request Logger Middleware
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -68,12 +69,14 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  const port = 5000;
+  // ✅ Use port from env or default to 5051
+  const port = parseInt(process.env.PORT || "5051", 10);
+
   server.listen({
     port,
     host: "0.0.0.0",
     reusePort: true,
   }, () => {
-    log(`serving on port ${port}`);
+    log(`🚀 Server running at http://localhost:${port}`);
   });
 })();

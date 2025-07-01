@@ -1,6 +1,8 @@
+import pkg from 'pg';
+const { Pool } = pkg;
+
 import { drizzle } from 'drizzle-orm/node-postgres';
-import { Pool } from 'pg';
-import * as schema from './shared/schema'; // ✅ path updated
+import * as schema from '../../shared/schema.js'; // ✅ correct path for ESM
 import 'dotenv/config';
 
 const pool = new Pool({
