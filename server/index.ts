@@ -1,3 +1,12 @@
+import cors from 'cors';
+
+// before defining any routes
+app.use(cors({
+  origin: '*', // Or use specific origin: 'http://localhost:3000'
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 import express, { type Request, Response, NextFunction } from "express";
 import { db } from './db';
 import 'dotenv/config';
