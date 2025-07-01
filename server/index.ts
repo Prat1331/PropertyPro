@@ -10,12 +10,20 @@ const app = express(); // ✅ this must come BEFORE app.use
 
 // ✅ Now this is safe
 app.use(cors({
-  origin: function (origin, callback) {
+  origin: (origin, callback) => {
     const allowedOrigins = [
       "http://localhost:3000",
       "https://propertiespro.netlify.app"
     ];
-    if (!origin || allowedOrigins.includes(origin)) {
+
+    // Allow Netlify preview deployments
+    const netlifyPreviewRegex = /^https:\/\/[\w-]+--propertiespro\.netlify\.app$/;
+
+    if (
+      !origin || 
+      allowedOrigins.includes(origin) || 
+      netlifyPreviewRegex.test(origin)
+    ) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
@@ -25,6 +33,7 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
 
 
 app.use(express.json());
