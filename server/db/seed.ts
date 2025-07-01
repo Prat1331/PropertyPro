@@ -4,17 +4,17 @@ import {
   properties,
   inquiries,
   aiRecommendations
-} from '../../../shared/schema.js';
+} from '../../shared/schema.js';
 
-await db.insert(users).values([
-  { username: 'john_doe', password: 'hashed_password_123' },
-  { username: 'priya.sharma', password: 'secure_pass_xyz' },
-  { username: 'rahul.kapoor', password: 'my_secure_pwd_456' }
-]);
 
-console.log('✅ Users inserted.');
-process.exit(0);
-
+async function seed() {
+  // Insert users
+  await db.insert(users).values([
+    { username: 'john_doe', password: 'hashed_password_123' },
+    { username: 'priya.sharma', password: 'secure_pass_xyz' },
+    { username: 'rahul.kapoor', password: 'my_secure_pwd_456' }
+  ]);
+  console.log('✅ Users inserted.');
 
   // Insert properties
   await db.insert(properties).values([
@@ -76,6 +76,7 @@ process.exit(0);
       contactPhone: '9123456780',
     },
   ]);
+  console.log('✅ Properties inserted.');
 
   // Insert inquiries
   await db.insert(inquiries).values([
@@ -103,9 +104,11 @@ process.exit(0);
       phone: '9090909090',
       propertyType: 'villa',
       message: 'Looking for a luxury villa for rent.',
+      propertyId: null,
       status: 'new',
     },
   ]);
+  console.log('✅ Inquiries inserted.');
 
   // Insert AI recommendations
   await db.insert(aiRecommendations).values([
@@ -128,14 +131,15 @@ process.exit(0);
       confidence: 0.88,
     },
   ]);
-
-  console.log('✅ Seeding complete.');
+  console.log('✅ AI Recommendations inserted.');
 }
 
-seed().catch((err) => {
-  console.error('❌ Seeding failed:', err);
-  process.exit(1);
-});
-
-console.log('✅ Seed data inserted successfully.');
-process.exit(0);
+seed()
+  .then(() => {
+    console.log('✅ Seeding complete.');
+    process.exit(0);
+  })
+  .catch((err) => {
+    console.error('❌ Seeding failed:', err);
+    process.exit(1);
+  });
