@@ -10,7 +10,18 @@ const app = express(); // ✅ this must come BEFORE app.use
 
 // ✅ Now this is safe
 app.use(cors({
-  origin: ["http://localhost:3000", "https://propertiespro.netlify.app"],
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      "http://localhost:3000",
+      "https://propertiespro.netlify.app"
+    ];
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
@@ -30,6 +41,8 @@ app.get("/api/test-db", async (_req, res) => {
     res.status(500).json({ success: false, error: (err as Error).message });
   }
 });
+
+
 
 // ✅ Request Logger Middleware
 app.use((req, res, next) => {
@@ -82,6 +95,8 @@ app.use((req, res, next) => {
 
   // ✅ Use port from env or default to 5051
   const port = parseInt(process.env.PORT || "5051", 10);
+
+
 
   server.listen({
     port,
