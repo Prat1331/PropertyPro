@@ -1,20 +1,20 @@
-import { db } from '../db'; // ✅ now pointing to db.ts, not ./index
+import { db } from './index.js';
 import {
   users,
   properties,
   inquiries,
   aiRecommendations
-} from '../../../shared/schema.ts';
+} from '../../../shared/schema.js';
 
-async function seed() {
-  console.log('🌱 Seeding database...');
+await db.insert(users).values([
+  { username: 'john_doe', password: 'hashed_password_123' },
+  { username: 'priya.sharma', password: 'secure_pass_xyz' },
+  { username: 'rahul.kapoor', password: 'my_secure_pwd_456' }
+]);
 
-  // Insert users
-  await db.insert(users).values([
-    { username: 'alice.verma', password: 'hashed_pass_001' },
-    { username: 'rohit.bansal', password: 'hashed_pass_002' },
-    { username: 'neha.kumar', password: 'hashed_pass_003' },
-  ]);
+console.log('✅ Users inserted.');
+process.exit(0);
+
 
   // Insert properties
   await db.insert(properties).values([
