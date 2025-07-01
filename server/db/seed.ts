@@ -1,5 +1,10 @@
 import { db } from '../db'; // ✅ now pointing to db.ts, not ./index
-import { users, properties, inquiries, aiRecommendations } from '../shared/schema.ts';
+import {
+  users,
+  properties,
+  inquiries,
+  aiRecommendations
+} from '../../../shared/schema.ts';
 
 async function seed() {
   console.log('🌱 Seeding database...');
@@ -131,3 +136,6 @@ seed().catch((err) => {
   console.error('❌ Seeding failed:', err);
   process.exit(1);
 });
+
+console.log('✅ Seed data inserted successfully.');
+process.exit(0);
