@@ -55,10 +55,6 @@
 }
 
 @layer base {
-  * {
-    @apply border border-gray-300;
-  }
-
   body {
     @apply font-sans antialiased bg-background text-foreground;
   }
@@ -67,6 +63,16 @@
     scroll-behavior: smooth;
   }
 }
+
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
 
 @layer components {
   .property-card {
