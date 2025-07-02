@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { propertyRouter } from "./propertyRoutes"; // ✅ Importing property routes
+import propertyRouter from "./propertyRoutes"; // ✅ Importing property routes
 import { insertInquirySchema } from "@shared/schema";
 import { getPropertyRecommendations, analyzePropertyInquiry } from "./services/gemini";
 import { storage } from "./storage";
