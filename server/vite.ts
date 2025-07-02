@@ -1,4 +1,3 @@
-import { pathToFileURL } from "url";
 import express, { type Express } from "express";
 import fs from "fs";
 import path from "path";
@@ -6,9 +5,18 @@ import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
 import { nanoid } from "nanoid";
 
-// Safe CommonJS fallback for __filename and __dirname
-const __filename = require.main?.filename || "";
-const __dirname = path.dirname(__filename);
+// ✅ Import compiled Vite config (this must be .js in dist, or ts-node must handle it)
+
+// Make sure vite.config.ts compiles to .js or handled via ts-node
+import { createRequire } from "module";
+const require = createRequire(import.meta.url); // only needed if using ESM
+
+const vite = await createViteServer({
+  configFile: path.resolve("../client/vite.config.ts"), // ✅ let Vite handle it
+  server: serverOptions,
+  appType: "custom",
+});
+
 
 const viteLogger = createLogger();
 
@@ -24,15 +32,10 @@ export function log(message: string, source = "express") {
 }
 
 export async function setupVite(app: Express, server: Server) {
-  // ✅ Convert path to file URL for dynamic ESM import
-  const configPath = pathToFileURL(path.resolve(__dirname, "../client/vite.config.ts")).href;
-  const configModule = await import(configPath);
-  const viteConfig = configModule.default;
-
   const serverOptions = {
     middlewareMode: true,
     hmr: { server },
-    allowedHosts: true,
+    allowedHosts: ['.'], // ✅ Fixed this from true to valid string[] value
   };
 
   const vite = await createViteServer({

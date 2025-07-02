@@ -1,13 +1,15 @@
+// tsconfig.server.json
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",
-    "allowImportingTsExtensions": false,
-    "noEmit": false,
+    "target": "es2020",
+    "rootDir": ".",
     "outDir": "./dist",
-    "rootDir": ".",          // 👈 allows both server/ and shared/
-    "target": "es2020"       // 👈 required for import.meta (next error)
+    "noEmit": false,
+    "allowImportingTsExtensions": false
   },
-  "include": ["server/**/*", "shared/**/*"]
+  "include": ["server/**/*", "shared/**/*"],
+  "exclude": ["client/**/*"] // ✅ Important
 }

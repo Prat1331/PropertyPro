@@ -1,0 +1,15 @@
+// tsconfig.client.json
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "types": ["vite/client"]
+  },
+  "include": ["client/src/**/*", "shared/**/*"],
+  "exclude": ["server/**/*", "dist", "node_modules"]
+}
