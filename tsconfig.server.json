@@ -3,14 +3,14 @@
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es2020",
     "outDir": "./dist",
-    "rootDir": "server",
-    "baseUrl": "server",
+    "rootDir": "./", 
+    "target": "es2020",
+    "baseUrl": ".",
     "paths": {
-  "@shared/*": ["shared/*"]
-   }
+      "@shared/*": ["shared/*"]
+    }
   },
-  "include": ["server/**/*"],
-  "exclude": ["client", "dist", "node_modules"]
+  "include": ["server/**/*", "shared/**/*"],
+  "exclude": ["client"]
 }

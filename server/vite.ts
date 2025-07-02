@@ -1,11 +1,8 @@
 import express, { type Express } from "express";
 import fs from "fs";
 import path from "path";
-import { createServer } from "vite"; // ✅ Correct import
 import { type Server } from "http";
 import { nanoid } from "nanoid";
-
-const createViteServer = createServer; // ✅ Rename
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
@@ -19,7 +16,14 @@ export function log(message: string, source = "express") {
 }
 
 export async function setupVite(app: Express, server: Server) {
-  const vite = await createViteServer({
+  const viteModule = await import("vite");
+  const createServer = (viteModule as any).createServer;
+
+  if (!createServer) {
+    throw new Error("Vite createServer API is not available. Possibly removed in Vite v5+.");
+  }
+
+  const vite = await createServer({
     configFile: path.resolve("client/vite.config.ts"),
     server: {
       middlewareMode: true,
@@ -29,7 +33,7 @@ export async function setupVite(app: Express, server: Server) {
     appType: "custom",
     customLogger: {
       error: (msg: string, options?: any) => {
-        console.error(msg, options); // ✅ Fallback to console.error
+        console.error(msg, options);
         process.exit(1);
       },
     },
@@ -57,6 +61,7 @@ export async function setupVite(app: Express, server: Server) {
     }
   });
 }
+
 
 export function serveStatic(app: Express) {
   const distPath = path.resolve(__dirname, "../public");
