@@ -4,7 +4,7 @@ import PropertyCard from "./PropertyCard";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import type { Property } from "@shared/schema";
+import type { Property } from "server/shared/schema";
 
 export default function PropertyGrid() {
   const { data: properties = [], isLoading } = useQuery<Property[]>({

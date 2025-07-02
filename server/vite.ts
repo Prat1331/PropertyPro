@@ -1,7 +1,7 @@
 import express, { type Express } from "express";
 import fs from "fs";
 import path from "path";
-import { createServer as createViteServer, createLogger } from "vite";
+import { createServer as createViteServer } from "vite";
 import { type Server } from "http";
 import { nanoid } from "nanoid";
 
@@ -29,7 +29,7 @@ export async function setupVite(app: Express, server: Server) {
     appType: "custom",
     customLogger: {
       ...viteLogger,
-      error: (msg, options) => {
+      error: (msg: string, options?: any) => {
         viteLogger.error(msg, options);
         process.exit(1);
       },

@@ -1,5 +1,5 @@
 import { apiRequest } from "./queryClient";
-import type { Property, InsertInquiry } from "@shared/schema";
+import type { Property, InsertInquiry } from "server/shared/schema";
 
 const BASE_URL = "https://propertypro-production.up.railway.app"; // 🔥 Replace with your Railway backend
 

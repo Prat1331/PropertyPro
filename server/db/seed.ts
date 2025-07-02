@@ -4,7 +4,7 @@ import {
   properties,
   inquiries,
   aiRecommendations
-} from '../../shared/schema.js';
+} from '../shared/schema.js';
 
 async function seed() {
   // Clean old data first

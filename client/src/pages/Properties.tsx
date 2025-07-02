@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent } from "@/components/ui/card";
 import { Search, SlidersHorizontal } from "lucide-react";
-import type { Property } from "@shared/schema";
+import type { Property } from "server/shared/schema";
 
 export default function Properties() {
   const [searchParams, setSearchParams] = useState({

@@ -16,7 +16,7 @@ import {
   Calendar,
   CheckCircle
 } from "lucide-react";
-import type { Property } from "@shared/schema";
+import type { Property } from "server/shared/schema";
 
 export default function PropertyDetail() {
   const { id } = useParams();
