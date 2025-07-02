@@ -5,19 +5,6 @@ import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
 import { nanoid } from "nanoid";
 
-// ✅ Import compiled Vite config (this must be .js in dist, or ts-node must handle it)
-
-// Make sure vite.config.ts compiles to .js or handled via ts-node
-import { createRequire } from "module";
-const require = createRequire(import.meta.url); // only needed if using ESM
-
-const vite = await createViteServer({
-  configFile: path.resolve("../client/vite.config.ts"), // ✅ let Vite handle it
-  server: serverOptions,
-  appType: "custom",
-});
-
-
 const viteLogger = createLogger();
 
 export function log(message: string, source = "express") {
@@ -32,15 +19,14 @@ export function log(message: string, source = "express") {
 }
 
 export async function setupVite(app: Express, server: Server) {
-  const serverOptions = {
-    middlewareMode: true,
-    hmr: { server },
-    allowedHosts: ['.'], // ✅ Fixed this from true to valid string[] value
-  };
-
   const vite = await createViteServer({
-    ...viteConfig,
-    configFile: false,
+    configFile: path.resolve("client/vite.config.ts"), // ✅ Let Vite load its config
+    server: {
+      middlewareMode: true,
+      hmr: { server },
+      allowedHosts: true as const, // ✅ Fix TS type
+    },
+    appType: "custom",
     customLogger: {
       ...viteLogger,
       error: (msg, options) => {
@@ -48,8 +34,6 @@ export async function setupVite(app: Express, server: Server) {
         process.exit(1);
       },
     },
-    server: serverOptions,
-    appType: "custom",
   });
 
   app.use(vite.middlewares);
@@ -58,10 +42,9 @@ export async function setupVite(app: Express, server: Server) {
     const url = req.originalUrl;
 
     try {
-      const clientTemplate = path.resolve(__dirname, "../client/index.html");
+      const clientTemplate = path.resolve("client/index.html");
       let template = await fs.promises.readFile(clientTemplate, "utf-8");
 
-      // Inject cache-busting query param
       template = template.replace(
         `src="/src/main.tsx"`,
         `src="/src/main.tsx?v=${nanoid()}"`
