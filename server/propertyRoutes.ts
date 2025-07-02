@@ -1,13 +1,14 @@
 import { Router } from "express";
-import { db } from "./db"; // or "../db" based on your path
+import { db } from "./db"; 
 import { properties } from "@shared/schema";
+import { eq } from "drizzle-orm";
 
 const router = Router();
 
-// ✅ Featured properties
 router.get("/api/properties/featured", async (_req, res) => {
   try {
-    const result = await db.select().from(properties).where(properties.featured.eq(true));
+    // Use eq helper, NOT properties.featured.eq
+    const result = await db.select().from(properties).where(eq(properties.featured, true));
     res.json(result);
   } catch (err) {
     console.error("❌ Error fetching featured properties:", err);
@@ -15,7 +16,6 @@ router.get("/api/properties/featured", async (_req, res) => {
   }
 });
 
-// ✅ All properties
 router.get("/api/properties", async (_req, res) => {
   try {
     const result = await db.select().from(properties);
