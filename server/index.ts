@@ -109,3 +109,6 @@ app.use((req, res, next) => {
     log(`🚀 Server running at http://localhost:${port}`);
   });
 })();
+
+console.log("✅ Server entry is being built");
+export {};

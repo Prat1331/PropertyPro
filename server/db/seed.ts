@@ -1,10 +1,10 @@
-import { db } from './index.js';
+import { db } from './index'; // ⬅️ removed .js
 import {
   users,
   properties,
   inquiries,
   aiRecommendations
-} from '../shared/schema.js';
+} from '../../shared/schema'; // ⬅️ removed .js
 
 async function seed() {
   // Clean old data first
@@ -27,7 +27,7 @@ async function seed() {
     {
       title: 'Luxury 3BHK in Sector 15',
       description: 'Spacious apartment with park view, close to metro and malls.',
-      price: '7500000.0', // ✅ if price is TEXT/NUMERIC in schema, use string
+      price: '7500000.0',
       priceType: 'sale',
       propertyType: 'apartment',
       bedrooms: 3,
@@ -122,7 +122,7 @@ async function seed() {
       userId: 'alice.verma',
       preferences: '3BHK, Sector 15, near metro',
       recommendedProperties: ['1', '2'],
-      confidence: '0.92', // ✅ ensure string if schema is TEXT/NUMERIC
+      confidence: '0.92',
     },
     {
       userId: 'rohit.bansal',
