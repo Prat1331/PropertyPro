@@ -22,7 +22,7 @@ export default function About() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              About <span className="text-primary">Pratham Associates</span>
+              About <span className="text-primary">Anupam Properties</span>
             </h2>
             <p className="text-lg text-gray-600 mb-6">
               With over a decade of excellence in real estate, Pratham Associates has been the trusted partner for thousands of families and investors in Faridabad. We specialize in premium residential and commercial properties that define luxury living.

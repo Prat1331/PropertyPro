@@ -79,7 +79,7 @@ export default function Contact() {
     {
       icon: MapPin,
       title: "Office",
-      content: "Sector 16, Faridabad, Haryana 121002"
+      content: "Anupam Properties, sec-86"
     },
     {
       icon: Clock,
