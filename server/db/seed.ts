@@ -1,10 +1,14 @@
-import { db } from './index'; // ⬅️ removed .js
+import { db } from './index';
 import {
   users,
   properties,
   inquiries,
-  aiRecommendations
-} from '../../shared/schema'; // ⬅️ removed .js
+  aiRecommendations,
+  type InsertUser,
+  type InsertProperty,
+  type InsertInquiry,
+  type InsertAiRecommendation
+} from '../../shared/schema';
 
 async function seed() {
   // Clean old data first
@@ -19,7 +23,7 @@ async function seed() {
     { username: 'john_doe', password: 'hashed_password_123' },
     { username: 'priya.sharma', password: 'secure_pass_xyz' },
     { username: 'rahul.kapoor', password: 'my_secure_pwd_456' }
-  ]);
+  ] as InsertUser[]);
   console.log('✅ Users inserted.');
 
   // Insert properties
@@ -81,7 +85,7 @@ async function seed() {
       contactPerson: 'Rajeev Khanna',
       contactPhone: '9123456780',
     },
-  ]);
+  ] as InsertProperty[]);
   console.log('✅ Properties inserted.');
 
   // Insert inquiries
@@ -111,9 +115,8 @@ async function seed() {
       propertyType: 'villa',
       message: 'Looking for a luxury villa for rent.',
       propertyId: null,
-      status: 'new',
     },
-  ]);
+  ] as InsertInquiry[]);
   console.log('✅ Inquiries inserted.');
 
   // Insert AI recommendations
@@ -136,7 +139,7 @@ async function seed() {
       recommendedProperties: ['2'],
       confidence: '0.88',
     },
-  ]);
+  ] as InsertAiRecommendation[]);
   console.log('✅ AI Recommendations inserted.');
 }
 

@@ -1,76 +1,72 @@
-import { pgTable, text, serial, integer, boolean, decimal } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
-import { z } from "zod";
+import {
+  pgTable,
+  text,
+  serial,
+  integer,
+  boolean,
+  varchar,
+  jsonb
+} from 'drizzle-orm/pg-core';
+import {
+  InferSelectModel,
+  InferInsertModel
+} from 'drizzle-orm';
 
-export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
+export const users = pgTable('users', {
+  id: serial('id').primaryKey(),
+  username: varchar('username', { length: 255 }),
+  password: varchar('password', { length: 255 }),
 });
 
-export const properties = pgTable("properties", {
-  id: serial("id").primaryKey(),
-  title: text("title").notNull(),
-  description: text("description").notNull(),
-  price: decimal("price", { precision: 12, scale: 2 }).notNull(),
-  priceType: text("price_type").notNull(), // "sale", "rent", "pg"
-  propertyType: text("property_type").notNull(), // "apartment", "villa", "office", "pg"
-  bedrooms: integer("bedrooms"),
-  bathrooms: integer("bathrooms"),
-  area: integer("area").notNull(), // in sq.ft
-  location: text("location").notNull(),
-  sector: text("sector").notNull(),
-  city: text("city").notNull().default("Faridabad"),
-  amenities: text("amenities").array(),
-  images: text("images").array(),
-  featured: boolean("featured").default(false),
-  available: boolean("available").default(true),
-  contactPerson: text("contact_person"),
-  contactPhone: text("contact_phone"),
+export const properties = pgTable('properties', {
+  id: serial('id').primaryKey(),
+  title: text('title'),
+  description: text('description'),
+  price: varchar('price', { length: 255 }),
+  priceType: varchar('price_type', { length: 255 }),
+  propertyType: varchar('property_type', { length: 255 }),
+  bedrooms: integer('bedrooms'),
+  bathrooms: integer('bathrooms'),
+  area: integer('area'),
+  location: varchar('location', { length: 255 }),
+  sector: varchar('sector', { length: 255 }),
+  city: varchar('city', { length: 255 }),
+  amenities: jsonb('amenities').$type<string[]>(),
+  images: jsonb('images').$type<string[]>(),
+  featured: boolean('featured'),
+  available: boolean('available'),
+  contactPerson: varchar('contact_person', { length: 255 }),
+  contactPhone: varchar('contact_phone', { length: 255 }),
 });
 
-export const inquiries = pgTable("inquiries", {
-  id: serial("id").primaryKey(),
-  name: text("name").notNull(),
-  email: text("email").notNull(),
-  phone: text("phone").notNull(),
-  propertyType: text("property_type"),
-  message: text("message").notNull(),
-  propertyId: integer("property_id"),
-  status: text("status").default("new"), // "new", "contacted", "closed"
+export const inquiries = pgTable('inquiries', {
+  id: serial('id').primaryKey(),
+  name: varchar('name', { length: 255 }),
+  email: varchar('email', { length: 255 }),
+  phone: varchar('phone', { length: 255 }),
+  propertyType: varchar('property_type', { length: 255 }),
+  message: text('message'),
+  propertyId: integer('property_id'),
+  status: varchar('status', { length: 255 }),
 });
 
-export const aiRecommendations = pgTable("ai_recommendations", {
-  id: serial("id").primaryKey(),
-  userId: text("user_id"),
-  preferences: text("preferences").notNull(),
-  recommendedProperties: text("recommended_properties").array(),
-  confidence: decimal("confidence", { precision: 3, scale: 2 }),
+export const aiRecommendations = pgTable('ai_recommendations', {
+  id: serial('id').primaryKey(),
+  userId: varchar('user_id', { length: 255 }),
+  preferences: text('preferences'),
+  recommendedProperties: jsonb('recommended_properties').$type<string[]>(),
+  confidence: varchar('confidence', { length: 255 }),
 });
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
-});
+// Export inferred types
+export type User = InferSelectModel<typeof users>;
+export type InsertUser = InferInsertModel<typeof users>;
 
-export const insertPropertySchema = createInsertSchema(properties).omit({
-  id: true,
-});
+export type Property = InferSelectModel<typeof properties>;
+export type InsertProperty = InferInsertModel<typeof properties>;
 
-export const insertInquirySchema = createInsertSchema(inquiries).omit({
-  id: true,
-  status: true,
-});
+export type Inquiry = InferSelectModel<typeof inquiries>;
+export type InsertInquiry = InferInsertModel<typeof inquiries>;
 
-export const insertAiRecommendationSchema = createInsertSchema(aiRecommendations).omit({
-  id: true,
-});
-
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
-export type InsertProperty = z.infer<typeof insertPropertySchema>;
-export type Property = typeof properties.$inferSelect;
-export type InsertInquiry = z.infer<typeof insertInquirySchema>;
-export type Inquiry = typeof inquiries.$inferSelect;
-export type InsertAiRecommendation = z.infer<typeof insertAiRecommendationSchema>;
-export type AiRecommendation = typeof aiRecommendations.$inferSelect;
+export type AiRecommendation = InferSelectModel<typeof aiRecommendations>;
+export type InsertAiRecommendation = InferInsertModel<typeof aiRecommendations>;
