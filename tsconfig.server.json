@@ -1,15 +1,17 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "target": "ES2020",
     "module": "commonjs",
     "moduleResolution": "node",
-    "target": "es2020",
-    "outDir": "./dist",
-    "rootDir": ".",                      // ✅ this includes both `server/` and `shared/`
-    "baseUrl": ".",
+    "outDir": "./dist",         // where compiled JS should go
+    "rootDir": ".",             // this MUST be . to allow shared + server
+    "baseUrl": ".",             
     "paths": {
       "@shared/*": ["shared/*"]
-    }
+    },
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "include": ["server/**/*", "shared/**/*"],
   "exclude": ["client", "dist", "node_modules"]
