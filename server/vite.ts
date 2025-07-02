@@ -1,11 +1,11 @@
 import express, { type Express } from "express";
 import fs from "fs";
 import path from "path";
-import { createServer as createViteServer } from "vite";
+import { createServer } from "vite"; // ✅ Correct import
 import { type Server } from "http";
 import { nanoid } from "nanoid";
 
-const viteLogger = createLogger();
+const createViteServer = createServer; // ✅ Rename
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
@@ -20,17 +20,16 @@ export function log(message: string, source = "express") {
 
 export async function setupVite(app: Express, server: Server) {
   const vite = await createViteServer({
-    configFile: path.resolve("client/vite.config.ts"), // ✅ Let Vite load its config
+    configFile: path.resolve("client/vite.config.ts"),
     server: {
       middlewareMode: true,
       hmr: { server },
-      allowedHosts: true as const, // ✅ Fix TS type
+      allowedHosts: true as const,
     },
     appType: "custom",
     customLogger: {
-      ...viteLogger,
       error: (msg: string, options?: any) => {
-        viteLogger.error(msg, options);
+        console.error(msg, options); // ✅ Fallback to console.error
         process.exit(1);
       },
     },
@@ -60,7 +59,6 @@ export async function setupVite(app: Express, server: Server) {
 }
 
 export function serveStatic(app: Express) {
-  // ✅ Corrected: "../public" instead of "public"
   const distPath = path.resolve(__dirname, "../public");
 
   if (!fs.existsSync(distPath)) {
@@ -75,4 +73,3 @@ export function serveStatic(app: Express) {
     res.sendFile(path.resolve(distPath, "index.html"));
   });
 }
-
