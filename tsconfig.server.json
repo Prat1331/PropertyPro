@@ -4,8 +4,8 @@
     "target": "ES2020",
     "module": "commonjs",
     "moduleResolution": "node",
-    "rootDir": ".",                         // root includes both server and shared
-    "outDir": "./dist/server",              // ✅ compiled JS goes here
+    "rootDir": ".",                   // ✅ allows both 'server' and 'shared'
+    "outDir": "./dist",               // ✅ don't nest too deep
     "baseUrl": ".",
     "paths": {
       "@shared/*": ["shared/*"]
