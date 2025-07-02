@@ -70,3 +70,36 @@ export type InsertInquiry = InferInsertModel<typeof inquiries>;
 
 export type AiRecommendation = InferSelectModel<typeof aiRecommendations>;
 export type InsertAiRecommendation = InferInsertModel<typeof aiRecommendations>;
+
+// shared/schema.ts (bottom of file)
+import { z } from "zod";
+
+export const insertPropertySchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  price: z.string(),
+  priceType: z.string(),
+  propertyType: z.string(),
+  bedrooms: z.number().nullable(),
+  bathrooms: z.number().nullable(),
+  area: z.number(),
+  location: z.string(),
+  sector: z.string(),
+  city: z.string(),
+  amenities: z.array(z.string()).nullable(),
+  images: z.array(z.string()).nullable(),
+  featured: z.boolean().nullable(),
+  available: z.boolean().nullable(),
+  contactPerson: z.string().nullable(),
+  contactPhone: z.string().nullable()
+});
+
+export const insertInquirySchema = z.object({
+  name: z.string(),
+  email: z.string(),
+  phone: z.string(),
+  propertyType: z.string().nullable(),
+  message: z.string(),
+  propertyId: z.number().nullable(),
+  status: z.string()
+});
