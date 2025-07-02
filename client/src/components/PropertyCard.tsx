@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Bed, Bath, Square, MapPin, Phone, Eye } from "lucide-react";
-import type { Property } from "server/shared/schema";
+import type { Property } from "@shared/schema";
 
 interface PropertyCardProps {
   property: Property;

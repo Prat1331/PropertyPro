@@ -4,13 +4,13 @@ import PropertyCard from "./PropertyCard";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import type { Property } from "server/shared/schema";
+import type { Property } from "@shared/schema";
 
 export default function PropertyGrid() {
   const { data: properties = [], isLoading } = useQuery<Property[]>({
-    queryKey: ["/api/properties/featured"],
+    queryKey: ["/api/properties"],
     queryFn: async () => {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/properties/featured`);
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/properties`);
       if (!res.ok) throw new Error("Failed to fetch properties");
       return res.json();
     },

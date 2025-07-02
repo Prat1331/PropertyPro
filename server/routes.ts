@@ -1,31 +1,13 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { insertPropertySchema, insertInquirySchema } from "@shared/schema";
+import { propertyRouter } from "./propertyRoutes"; // ✅ Importing property routes
+import { insertInquirySchema } from "@shared/schema";
 import { getPropertyRecommendations, analyzePropertyInquiry } from "./services/gemini";
+import { storage } from "./storage";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // ✅ Properties - All
-  app.get("/api/properties", async (_req, res) => {
-    try {
-      const properties = await storage.getAllProperties();
-      res.json(properties);
-    } catch (error) {
-      console.error("❌ /api/properties error:", error);
-      res.status(500).json({ error: "Failed to fetch properties" });
-    }
-  });
-
-  // ✅ Properties - Featured
-  app.get("/api/properties/featured", async (_req, res) => {
-    try {
-      const properties = await storage.getFeaturedProperties();
-      res.json(properties);
-    } catch (error) {
-      console.error("❌ /api/properties/featured error:", error);
-      res.status(500).json({ error: "Failed to fetch featured properties" });
-    }
-  });
+  // ✅ Mount property routes (GET all & featured)
+  app.use(propertyRouter);
 
   // ✅ Properties - Search
   app.get("/api/properties/search", async (req, res) => {
@@ -135,6 +117,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ status: "ok", service: "Pratham Associates API" });
   });
 
+  // ✅ Start HTTP server
   const httpServer = createServer(app);
   return httpServer;
 }
