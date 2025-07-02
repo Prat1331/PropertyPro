@@ -1,15 +1,15 @@
-// tsconfig.server.json
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
-    "moduleResolution": "node",
     "target": "es2020",
-    "rootDir": ".",
-    "outDir": "./dist",
-    "noEmit": false,
-    "allowImportingTsExtensions": false
+    "outDir": "./dist/server",
+    "rootDir": "./server",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "allowJs": false,
+    "strict": true
   },
-  "include": ["server/**/*", "shared/**/*"],
-  "exclude": ["client/**/*"] // ✅ Important
+  "include": ["server/**/*", "shared/**/*"]
 }
