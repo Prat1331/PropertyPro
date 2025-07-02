@@ -4,14 +4,15 @@
     "target": "ES2020",
     "module": "commonjs",
     "moduleResolution": "node",
-    "rootDir": ".",                   // ✅ allows both 'server' and 'shared'
-    "outDir": "./dist",               // ✅ don't nest too deep
-    "baseUrl": ".",
+    "rootDir": ".",                         // ✅ root is the entire project
+    "outDir": "./dist",                     // ✅ compile everything to dist/
+    "baseUrl": ".",                         // ✅ needed for paths
     "paths": {
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"]             // ✅ use shared path alias
     },
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
   "include": ["server/**/*", "shared/**/*"],
   "exclude": ["client", "dist", "node_modules"]
