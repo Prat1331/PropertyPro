@@ -16,5 +16,5 @@
     "allowImportingTsExtensions": false                         // ✅ REQUIRED for build to work
   },
   "include": ["server/**/*", "shared/**/*"],
-  "exclude": ["client", "dist", "node_modules"]
+  "exclude": ["client", "node_modules"]
 }
