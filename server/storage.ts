@@ -54,6 +54,8 @@ export class MemStorage implements IStorage {
   }
 
   private initializeSampleData() {
+    this.properties.clear(); // 🧹 clear any old data
+    this.currentPropertyId = 1;
     const sampleProperties: InsertProperty[] = [
       {
         title: "Premium 3BHK Apartment",
@@ -177,6 +179,8 @@ export class MemStorage implements IStorage {
     ];
 
     sampleProperties.forEach((p) => this.createProperty(p));
+
+    console.log("✅ Sample data loaded:", sampleProperties.map(p => p.title));
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -232,8 +236,11 @@ export class MemStorage implements IStorage {
   }
 
   async getFeaturedProperties(): Promise<Property[]> {
-    return Array.from(this.properties.values()).filter((p) => p.featured && p.available);
-  }
+  const featured = Array.from(this.properties.values()).filter((p) => p.featured && p.available);
+  console.log("📦 Returning featured properties:", featured.map((p) => p.title));
+  return featured;
+ }
+
 
   async createProperty(insertProperty: InsertProperty): Promise<Property> {
     const id = this.currentPropertyId++;
