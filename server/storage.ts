@@ -75,11 +75,11 @@ export class MemStorage implements IStorage {
         contactPhone: "+91 9911926000",
       },
       {
-      title: "3 BHK Apartment – Adore Happy Homes, Sector 86",
-      description: "650 sq.ft, 3 beds/2 baths, North-facing, ready to move",
+      title: "3 BHK Apartment – BPTP Park Elite Floors, Sector 85",
+      description: "1045 - 2250 sq.ft, 3 beds/3 baths, North-facing, ready to move",
       price: "6000000 to 10000000", // ₹37.8 L
       priceType: "sale",
-      propertyType: "flat",
+      propertyType: "Apartment",
       bedrooms: 3,
       bathrooms: 3,
       area: 1045 - 2250,
@@ -95,9 +95,9 @@ export class MemStorage implements IStorage {
     },
 
     {
-      title: "3 BHK Flat – BPTP Princess Park, Sector 86",
+      title: "3 BHK Flat – Kgl Green, Sector 75",
       description: "1888 sq.ft, 3 beds/3 baths, ready to move",
-      price: "10000000", // ₹1 Cr
+      price: "1Cr", // ₹1 Cr
       priceType: "sale",
       propertyType: "apartment",
       bedrooms: 3,
@@ -115,19 +115,19 @@ export class MemStorage implements IStorage {
     },
 
     {
-      title: "2 BHK Apartment – Amolik Residency, Sector 86",
-      description: "900 sq.ft, 2 beds/2 baths, West-facing, ₹78 L",
-      price: "7800000",
+      title: "4 BHK Apartment –  Greenfield Colony,Just 3.1 km away from Asian Fidelis Multi Speciality",
+      description: "1850 sq.ft, 4 beds/4 baths, West-facing, ₹1.3 - 3.7 cr",
+      price: "30000000",
       priceType: "sale",
       propertyType: "apartment",
-      bedrooms: 2,
-      bathrooms: 2,
-      area: 900,
-      location: "Sector 86, Faridabad",
-      sector: "Sector 86",
+      bedrooms: 4,
+      bathrooms: 3,
+      area: 1850,
+      location: "3, 4, 5 BHK Flat in Greenfield Colony, Faridabad",
+      sector: "Greenfield Colony",
       city: "Faridabad",
       amenities: ["Parking", "Security"],
-      images: ["https://images.unsplash.com/photo-1598928506311-c55ded91a20b?w=800"],
+      images: ["https://newprojects.99acres.com/projects/lord_krishna_properties_and_developers/faridabad_luxury_and_premium_builder_floors/images/3yitjeu_1741693218_576731847_optOrig.jpg"],
       featured: false,
       available: true,
       contactPerson: "Anupam Properties",
@@ -135,7 +135,7 @@ export class MemStorage implements IStorage {
     },
 
     {
-      title: "3 BHK Flat – Omaxe Heights, Sector 86",
+      title: "3 BHK Flat – Puri Aanand Vilas, Sector 81",
       description: "1475 sq.ft, 3 beds/3 baths, West-facing, ₹1.05 Cr",
       price: "10500000",
       priceType: "sale",
@@ -143,11 +143,11 @@ export class MemStorage implements IStorage {
       bedrooms: 3,
       bathrooms: 3,
       area: 1475,
-      location: "Sector 86, Faridabad",
-      sector: "Sector 86",
+      location: "Sector 81, Faridabad",
+      sector: "Sector 81",
       city: "Faridabad",
       amenities: ["Pool", "Gym", "Garden", "Lift"],
-      images: ["https://images.unsplash.com/photo-1600585152895-7981d41cd77b?w=800"],
+      images: ["https://newprojects.99acres.com/projects/puri/puri_aanand_vilas/images/t5vdqyh_1741253518_575226233_optOrig.jpg"],
       featured: true,
       available: true,
       contactPerson: "Anupam Properties",
@@ -155,7 +155,7 @@ export class MemStorage implements IStorage {
     },
 
     {
-      title: "3 BHK Flat – Umang Summer Palms, Sector 86",
+      title: "3 BHK Flat – Omaxe Heights, Sector 86",
       description: "1576 sq.ft, 3 beds/3 baths, ₹1 Cr approx.",
       price: "10000000",
       priceType: "sale",
@@ -167,7 +167,7 @@ export class MemStorage implements IStorage {
       sector: "Sector 86",
       city: "Faridabad",
       amenities: ["Lift", "Sports Area", "Gated Community"],
-      images: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800"],
+      images: ["https://newprojects.99acres.com/projects/omaxe/omaxe_heights/images/7rhiw3z_1740995918_574230819_large.jpg"],
       featured: false,
       available: true,
       contactPerson: "Anupam Properties",
