@@ -8,12 +8,13 @@ import type { Property } from "@shared/schema";
 
 export default function PropertyGrid() {
   const { data: properties = [], isLoading } = useQuery<Property[]>({
-    queryKey: ["/api/properties"],
+    
+    queryKey: ["/api/properties/featured"],
     queryFn: async () => {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/properties`);
-      if (!res.ok) throw new Error("Failed to fetch properties");
-      return res.json();
-    },
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/properties/featured`);
+    if (!res.ok) throw new Error("Failed to fetch featured properties");
+    return res.json();
+  },
   });
 
   return (
