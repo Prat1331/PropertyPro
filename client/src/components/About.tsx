@@ -25,7 +25,7 @@ export default function About() {
               About <span className="text-primary">Anupam Properties</span>
             </h2>
             <p className="text-lg text-gray-600 mb-6">
-              With over a decade of excellence in real estate, Pratham Associates has been the trusted partner for thousands of families and investors in Faridabad. We specialize in premium residential and commercial properties that define luxury living.
+              With over a decade of excellence in real estate, Anupam Properties has been the trusted partner for thousands of families and investors in Faridabad. We specialize in premium residential and commercial properties that define luxury living.
             </p>
             <p className="text-lg text-gray-600 mb-8">
               Our commitment to transparency, customer satisfaction, and innovative technology like AI-powered property matching sets us apart in the real estate industry.

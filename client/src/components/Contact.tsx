@@ -73,13 +73,13 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Email", 
-      content: "info@prathamassociates.com",
-      action: "mailto:info@prathamassociates.com"
+      content: "gagan74.gera@gmail.com",
+      action: "mailto:gagan74.gera@gmail.com"
     },
     {
       icon: MapPin,
       title: "Office",
-      content: "Anupam Properties, sec-86"
+      content: "Anupam Properties, sec-88"
     },
     {
       icon: Clock,
