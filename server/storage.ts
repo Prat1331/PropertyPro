@@ -97,7 +97,7 @@ export class MemStorage implements IStorage {
     {
       title: "3 BHK Flat – Kgl Green, Sector 75",
       description: "1888 sq.ft, 3 beds/3 baths, ready to move",
-      price: "1Cr", // ₹1 Cr
+      price: "10000000", // ₹1 Cr
       priceType: "sale",
       propertyType: "apartment",
       bedrooms: 3,
