@@ -50,7 +50,7 @@ export default function Header() {
             <div className="flex items-center space-x-3 cursor-pointer">
               <Logo />
               <div>
-                <h1 className="text-xl font-bold text-gray-800">Pratham Associates</h1>
+                <h1 className="text-xl font-bold text-gray-800">Anupam Properties</h1>
                 <p className="text-sm text-gray-600">Premium Properties</p>
               </div>
             </div>
