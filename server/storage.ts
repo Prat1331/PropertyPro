@@ -71,27 +71,27 @@ export class MemStorage implements IStorage {
         images: ["https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800"],
         featured: true,
         available: true,
-        contactPerson: "Pratham Associates",
+        contactPerson: "Anupam Properties",
         contactPhone: "+91 9911926000",
       },
       {
       title: "3 BHK Apartment – Adore Happy Homes, Sector 86",
       description: "650 sq.ft, 3 beds/2 baths, North-facing, ready to move",
-      price: "3800000", // ₹37.8 L
+      price: "6000000 to 10000000", // ₹37.8 L
       priceType: "sale",
-      propertyType: "apartment",
+      propertyType: "flat",
       bedrooms: 3,
-      bathrooms: 2,
-      area: 650,
-      location: "Sector 86, Faridabad",
-      sector: "Sector 86",
+      bathrooms: 3,
+      area: 1045 - 2250,
+      location: "Sector 85, Faridabad",
+      sector: "Sector 85",
       city: "Faridabad",
       amenities: ["Lift", "Parking", "Security"],
-      images: ["https://images.unsplash.com/photo-1600585152895-7981d41cd77b?w=800"],
+      images: ["https://housing-images.n7net.in/4f2250e8/86bdd4f6bf1da3e7c24ba3b33bede8d9/v0/large/bptp_park_elite_floors-sector_85_faridabad-faridabad-bptp_limited.jpeg"],
       featured: false,
       available: true,
-      contactPerson: "Adore Brokers",
-      contactPhone: "+91 9876543210",
+      contactPerson: "Anupam Properties",
+      contactPhone: "+91 9911926000",
     },
 
     {
@@ -103,15 +103,15 @@ export class MemStorage implements IStorage {
       bedrooms: 3,
       bathrooms: 3,
       area: 1888,
-      location: "Sector 86, Faridabad",
-      sector: "Sector 86",
+      location: "Sector 75, Faridabad",
+      sector: "Sector 75",
       city: "Faridabad",
       amenities: ["Lift", "Car Parking", "Garden"],
-      images: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800"],
+      images: ["https://newprojects.99acres.com/projects/klj/greens/images/v2s2su6f.jpg"],
       featured: true,
       available: true,
-      contactPerson: "Princess Park Realty",
-      contactPhone: "+91 9123456780",
+      contactPerson: "Anupam Properties",
+      contactPhone: "+91 9911926000",
     },
 
     {
@@ -130,8 +130,8 @@ export class MemStorage implements IStorage {
       images: ["https://images.unsplash.com/photo-1598928506311-c55ded91a20b?w=800"],
       featured: false,
       available: true,
-      contactPerson: "Amolik Realtors",
-      contactPhone: "+91 9988776655",
+      contactPerson: "Anupam Properties",
+      contactPhone: "+91 9911926000",
     },
 
     {
@@ -150,8 +150,8 @@ export class MemStorage implements IStorage {
       images: ["https://images.unsplash.com/photo-1600585152895-7981d41cd77b?w=800"],
       featured: true,
       available: true,
-      contactPerson: "Omaxe Estates",
-      contactPhone: "+91 9988001122",
+      contactPerson: "Anupam Properties",
+      contactPhone: "+91 9911926000",
     },
 
     {
@@ -170,8 +170,8 @@ export class MemStorage implements IStorage {
       images: ["https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800"],
       featured: false,
       available: true,
-      contactPerson: "Summer Palms Realty",
-      contactPhone: "+91 9112233445",
+      contactPerson: "Anupam Properties",
+      contactPhone: "+91 9911926000",
     },
       // Add more if needed
     ];
