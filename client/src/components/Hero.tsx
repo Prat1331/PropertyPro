@@ -121,7 +121,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Discover premium properties in Faridabad with Pratham Associates
+            Discover premium properties in Faridabad with Anupam Properties
           </motion.p>
 
           {/* Traditional Search */}

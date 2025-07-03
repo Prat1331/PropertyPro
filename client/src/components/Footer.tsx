@@ -45,7 +45,7 @@ export default function Footer() {
             <div className="flex items-center space-x-3 mb-6">
               <Logo />
               <div>
-                <h3 className="text-xl font-bold">Pratham Associates</h3>
+                <h3 className="text-xl font-bold">Anupam Properties</h3>
                 <p className="text-sm text-gray-400">Premium Properties</p>
               </div>
             </div>
@@ -117,14 +117,14 @@ export default function Footer() {
                   href="mailto:info@prathamassociates.com"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  info@prathamassociates.com
+                  gagan74.gera@gmail.com
                 </a>
               </div>
               
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-primary mt-1" />
                 <span className="text-gray-400">
-                  Sector 16, Faridabad, Haryana 121002
+                  Anupam Properties, sec-88
                 </span>
               </div>
             </div>
@@ -133,7 +133,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 pt-8 text-center">
           <p className="text-gray-400">
-            &copy; 2024 Pratham Associates. All rights reserved. | Privacy Policy | Terms of Service
+            &copy; 2024 Anupam Properties. All rights reserved. | Privacy Policy | Terms of Service
           </p>
         </div>
       </div>
