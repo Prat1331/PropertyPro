@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 
 const router = Router();
 
-router.get("/api/properties/featured", async (_req, res) => {
+router.get("/featured", async (_req, res) => {
   try {
     // Use eq helper, NOT properties.featured.eq
     const result = await db.select().from(properties).where(eq(properties.featured, true));
@@ -16,7 +16,7 @@ router.get("/api/properties/featured", async (_req, res) => {
   }
 });
 
-router.get("/api/properties", async (_req, res) => {
+router.get("/", async (_req, res) => {
   try {
     const result = await db.select().from(properties);
     res.json(result);

@@ -7,7 +7,7 @@ import { storage } from "./storage";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // ✅ Mount property routes (GET all & featured)
-  app.use(propertyRouter);
+  app.use("/api/properties", propertyRouter);
 
   // ✅ Properties - Search
   app.get("/api/properties/search", async (req, res) => {
