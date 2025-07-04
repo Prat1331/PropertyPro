@@ -7,8 +7,7 @@
     "client": "vite --config client/vite.config.ts",
     "build:client": "vite build --config client/vite.config.ts",
     "build:server": "tsc -p tsconfig.server.json && tsc-alias -p tsconfig.temp.json",
-    "clean": "powershell -Command \"if (Test-Path dist) { Remove-Item -Recurse -Force dist }\"",
-    "build": "npm run clean && npm run build:client && npm run build:server",
+    "build": "npm run build:client && npm run build:server",
     "start": "cross-env NODE_ENV=production node dist/server/index.js",
     "check": "tsc",
     "db:push": "drizzle-kit push"
