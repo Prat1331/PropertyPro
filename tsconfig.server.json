@@ -4,16 +4,16 @@
     "target": "ES2020",
     "module": "commonjs",
     "moduleResolution": "node",
-    "rootDir": ".",              // ✅ root is the "server" folder
-    "outDir": "dist/server",                          // base for path aliasing
+    "rootDir": "server",
+    "outDir": "dist/server",
+    "baseUrl": ".",
     "paths": {
-      "@shared/*": ["shared/*"]              // alias works with tsc-alias
+      "@shared/*": ["shared/*"]
     },
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "allowImportingTsExtensions": false                         // ✅ REQUIRED for build to work
+    "resolveJsonModule": true
   },
   "include": ["server/**/*", "shared/**/*"],
-  "exclude": ["client","dist", "node_modules"]
+  "exclude": ["client", "dist", "node_modules"]
 }
