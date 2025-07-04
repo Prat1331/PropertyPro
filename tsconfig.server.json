@@ -1,18 +1,21 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
     "moduleResolution": "node",
-    "rootDir": ".",                              // ✅ root is whole project
-    "outDir": "./dist",                     // ✅ where to build server files
-    "baseUrl": ".",                              // ✅ to use path aliases
+    "rootDir": ".",
+    "outDir": "./dist",                      // compiled files output here
+    "baseUrl": ".",                          // base for path aliasing
     "paths": {
-      "@shared/*": ["shared/*"]
+      "@shared/*": ["shared/*"]              // alias works with tsc-alias
     },
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": false,
+    "noEmit": false,                        // ✅ REQUIRED for build to work
   },
-  "include": ["server/**/*", "shared/**/*"],     // ✅ includes both
-  "exclude": ["client", "dist", "node_modules"]  // ✅ no need to compile client
-}
+  "include": ["server/**/*", "shared/**/*"],
+  "exclude": ["client","dist", "node_modules"]
+} 
