@@ -4,8 +4,8 @@
     "target": "ES2020",
     "module": "commonjs",
     "moduleResolution": "node",
-    "rootDir": ".",             // ✅ correct root
-    "outDir": "dist/server",                      // compiled files output here
+    "rootDir": ".",
+    "outDir": "dist",                      // compiled files output here
     "baseUrl": ".",                          // base for path aliasing
     "paths": {
       "@shared/*": ["shared/*"]              // alias works with tsc-alias
@@ -16,5 +16,5 @@
     "allowImportingTsExtensions": false                         // ✅ REQUIRED for build to work
   },
   "include": ["server/**/*", "shared/**/*"],
-  "exclude": ["client", "node_modules"]
+  "exclude": ["client","dist", "node_modules"]
 }
