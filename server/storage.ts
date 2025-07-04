@@ -179,7 +179,7 @@ export class MemStorage implements IStorage {
     ];
 
     sampleProperties.forEach((p) => this.createProperty(p));
-    console.log("✅ Sample data loaded:", sampleProperties.map((p) => p.title));
+    console.log("✅ Sample data loaded:", sampleProperties.map((p: InsertProperty) => p.title));
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -191,14 +191,14 @@ export class MemStorage implements IStorage {
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentUserId++;
-    const user: User = {
-      id,
-      username: insertUser.username,
-      password: insertUser.password
-    };
-    this.users.set(id, user);
-    return user;
+  const id = this.currentUserId++;
+  const user: User = {
+    id,
+    username: insertUser.username ?? null,
+    password: insertUser.password ?? null,
+  };
+  this.users.set(id, user);
+  return user;
   }
 
   async getProperty(id: number): Promise<Property | undefined> {
@@ -240,29 +240,29 @@ export class MemStorage implements IStorage {
   }
 
   async createProperty(insertProperty: InsertProperty): Promise<Property> {
-    const id = this.currentPropertyId++;
-    const property: Property = {
-      id,
-      title: insertProperty.title,
-      description: insertProperty.description,
-      price: insertProperty.price,
-      priceType: insertProperty.priceType,
-      propertyType: insertProperty.propertyType,
-      bedrooms: insertProperty.bedrooms,
-      bathrooms: insertProperty.bathrooms,
-      area: insertProperty.area,
-      location: insertProperty.location,
-      sector: insertProperty.sector,
-      city: insertProperty.city ?? "Faridabad",
-      amenities: insertProperty.amenities ?? [],
-      images: insertProperty.images ?? [],
-      featured: insertProperty.featured ?? false,
-      available: insertProperty.available ?? true,
-      contactPerson: insertProperty.contactPerson ?? "",
-      contactPhone: insertProperty.contactPhone ?? ""
-    };
-    this.properties.set(id, property);
-    return property;
+  const id = this.currentPropertyId++;
+  const property: Property = {
+    id,
+    title: insertProperty.title ?? null,
+    description: insertProperty.description ?? null,
+    price: insertProperty.price ?? null,
+    priceType: insertProperty.priceType ?? null,
+    propertyType: insertProperty.propertyType ?? null,
+    bedrooms: insertProperty.bedrooms ?? null,
+    bathrooms: insertProperty.bathrooms ?? null,
+    area: insertProperty.area ?? null,
+    location: insertProperty.location ?? null,
+    sector: insertProperty.sector ?? null,
+    city: insertProperty.city ?? "Faridabad",
+    amenities: insertProperty.amenities ?? [],
+    images: insertProperty.images ?? [],
+    featured: insertProperty.featured ?? false,
+    available: insertProperty.available ?? true,
+    contactPerson: insertProperty.contactPerson ?? "",
+    contactPhone: insertProperty.contactPhone ?? "",
+  };
+  this.properties.set(id, property);
+  return property;
   }
 
   async updateProperty(id: number, updateData: Partial<InsertProperty>): Promise<Property | undefined> {
@@ -274,37 +274,39 @@ export class MemStorage implements IStorage {
   }
 
   async createInquiry(insertInquiry: InsertInquiry): Promise<Inquiry> {
-    const id = this.currentInquiryId++;
-    const inquiry: Inquiry = {
-      id,
-      name: insertInquiry.name,
-      email: insertInquiry.email,
-      phone: insertInquiry.phone,
-      message: insertInquiry.message,
-      propertyType: insertInquiry.propertyType,
-      propertyId: insertInquiry.propertyId,
-      status: insertInquiry.status ?? "new"
-    };
-    this.inquiries.set(id, inquiry);
-    return inquiry;
+  const id = this.currentInquiryId++;
+  const inquiry: Inquiry = {
+    id,
+    name: insertInquiry.name ?? null,
+    email: insertInquiry.email ?? null,
+    phone: insertInquiry.phone ?? null,
+    message: insertInquiry.message ?? null,
+    propertyType: insertInquiry.propertyType ?? null,
+    propertyId: insertInquiry.propertyId ?? null,
+    status: insertInquiry.status ?? "new",
+  };
+  this.inquiries.set(id, inquiry);
+  return inquiry;
   }
+
 
   async getAllInquiries(): Promise<Inquiry[]> {
     return Array.from(this.inquiries.values());
   }
 
   async createAiRecommendation(insertRecommendation: InsertAiRecommendation): Promise<AiRecommendation> {
-    const id = this.currentRecommendationId++;
-    const recommendation: AiRecommendation = {
-      id,
-      userId: insertRecommendation.userId,
-      preferences: insertRecommendation.preferences,
-      recommendedProperties: insertRecommendation.recommendedProperties,
-      confidence: insertRecommendation.confidence
-    };
-    this.aiRecommendations.set(id, recommendation);
-    return recommendation;
-  }
+  const id = this.currentRecommendationId++;
+  const recommendation: AiRecommendation = {
+    id,
+    userId: insertRecommendation.userId ?? null,
+    preferences: insertRecommendation.preferences ?? null,
+    recommendedProperties: insertRecommendation.recommendedProperties ?? null,
+    confidence: insertRecommendation.confidence ?? null,
+  };
+  this.aiRecommendations.set(id, recommendation);
+  return recommendation;
+ }
+
 
   async getAiRecommendationsByUser(userId: string): Promise<AiRecommendation[]> {
     return Array.from(this.aiRecommendations.values()).filter((r) => r.userId === userId);
