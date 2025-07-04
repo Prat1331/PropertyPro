@@ -1,12 +1,11 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
     "moduleResolution": "node",
-    "rootDir": ".",                           // ✅ include all sources
-    "outDir": "dist",
-    "baseUrl": ".",
+    "rootDir": ".",                              // ✅ root is whole project
+    "outDir": "./dist",                     // ✅ where to build server files
+    "baseUrl": ".",                              // ✅ to use path aliases
     "paths": {
       "@shared/*": ["shared/*"]
     },
@@ -14,6 +13,6 @@
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "include": ["server/**/*", "shared/**/*"],
-  "exclude": ["client", "dist", "node_modules"]
+  "include": ["server/**/*", "shared/**/*"],     // ✅ includes both
+  "exclude": ["client", "dist", "node_modules"]  // ✅ no need to compile client
 }

@@ -54,7 +54,7 @@ export class MemStorage implements IStorage {
   }
 
   private initializeSampleData() {
-    this.properties.clear(); // 🧹 clear any old data
+    this.properties.clear();
     this.currentPropertyId = 1;
     const sampleProperties: InsertProperty[] = [
       {
@@ -179,8 +179,7 @@ export class MemStorage implements IStorage {
     ];
 
     sampleProperties.forEach((p) => this.createProperty(p));
-
-    console.log("✅ Sample data loaded:", sampleProperties.map(p => p.title));
+    console.log("✅ Sample data loaded:", sampleProperties.map((p) => p.title));
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -195,8 +194,8 @@ export class MemStorage implements IStorage {
     const id = this.currentUserId++;
     const user: User = {
       id,
-      username: insertUser.username ?? null,
-      password: insertUser.password ?? null,
+      username: insertUser.username,
+      password: insertUser.password
     };
     this.users.set(id, user);
     return user;
@@ -207,7 +206,7 @@ export class MemStorage implements IStorage {
   }
 
   async getAllProperties(): Promise<Property[]> {
-    return Array.from(this.properties.values()).filter((p) => p.available);
+    return Array.from(this.properties.values()).filter(p => p.available);
   }
 
   async getPropertiesByFilters(filters: {
@@ -223,8 +222,7 @@ export class MemStorage implements IStorage {
 
       if (filters.priceType && property.priceType !== filters.priceType) return false;
       if (filters.propertyType && property.propertyType !== filters.propertyType) return false;
-      if (filters.location && !(property.location ?? "").toLowerCase().includes(filters.location.toLowerCase()))
-        return false;
+      if (filters.location && !property.location?.toLowerCase().includes(filters.location.toLowerCase())) return false;
       if (filters.bedrooms && property.bedrooms !== filters.bedrooms) return false;
 
       const price = parseFloat(property.price ?? "0");
@@ -236,33 +234,32 @@ export class MemStorage implements IStorage {
   }
 
   async getFeaturedProperties(): Promise<Property[]> {
-  const featured = Array.from(this.properties.values()).filter((p) => p.featured && p.available);
-  console.log("📦 Returning featured properties:", featured.map((p) => p.title));
-  return featured;
- }
-
+    const featured = Array.from(this.properties.values()).filter(p => p.featured && p.available);
+    console.log("📦 Returning featured properties:", featured.map(p => p.title));
+    return featured;
+  }
 
   async createProperty(insertProperty: InsertProperty): Promise<Property> {
     const id = this.currentPropertyId++;
     const property: Property = {
       id,
-      title: insertProperty.title ?? null,
-      description: insertProperty.description ?? null,
-      price: insertProperty.price ?? null,
-      priceType: insertProperty.priceType ?? null,
-      propertyType: insertProperty.propertyType ?? null,
-      bedrooms: insertProperty.bedrooms ?? null,
-      bathrooms: insertProperty.bathrooms ?? null,
-      area: insertProperty.area ?? null,
-      location: insertProperty.location ?? null,
-      sector: insertProperty.sector ?? null,
+      title: insertProperty.title,
+      description: insertProperty.description,
+      price: insertProperty.price,
+      priceType: insertProperty.priceType,
+      propertyType: insertProperty.propertyType,
+      bedrooms: insertProperty.bedrooms,
+      bathrooms: insertProperty.bathrooms,
+      area: insertProperty.area,
+      location: insertProperty.location,
+      sector: insertProperty.sector,
       city: insertProperty.city ?? "Faridabad",
-      amenities: insertProperty.amenities ?? null,
-      images: insertProperty.images ?? null,
+      amenities: insertProperty.amenities ?? [],
+      images: insertProperty.images ?? [],
       featured: insertProperty.featured ?? false,
       available: insertProperty.available ?? true,
-      contactPerson: insertProperty.contactPerson ?? null,
-      contactPhone: insertProperty.contactPhone ?? null,
+      contactPerson: insertProperty.contactPerson ?? "",
+      contactPhone: insertProperty.contactPhone ?? ""
     };
     this.properties.set(id, property);
     return property;
@@ -272,21 +269,21 @@ export class MemStorage implements IStorage {
     const existing = this.properties.get(id);
     if (!existing) return undefined;
     const updated = { ...existing, ...updateData };
-    this.properties.set(id, updated);
-    return updated;
+    this.properties.set(id, updated as Property);
+    return updated as Property;
   }
 
   async createInquiry(insertInquiry: InsertInquiry): Promise<Inquiry> {
     const id = this.currentInquiryId++;
     const inquiry: Inquiry = {
       id,
-      name: insertInquiry.name ?? null,
-      email: insertInquiry.email ?? null,
-      phone: insertInquiry.phone ?? null,
-      message: insertInquiry.message ?? null,
-      propertyType: insertInquiry.propertyType ?? null,
-      propertyId: insertInquiry.propertyId ?? null,
-      status: insertInquiry.status ?? "new",
+      name: insertInquiry.name,
+      email: insertInquiry.email,
+      phone: insertInquiry.phone,
+      message: insertInquiry.message,
+      propertyType: insertInquiry.propertyType,
+      propertyId: insertInquiry.propertyId,
+      status: insertInquiry.status ?? "new"
     };
     this.inquiries.set(id, inquiry);
     return inquiry;
@@ -300,10 +297,10 @@ export class MemStorage implements IStorage {
     const id = this.currentRecommendationId++;
     const recommendation: AiRecommendation = {
       id,
-      userId: insertRecommendation.userId ?? null,
-      preferences: insertRecommendation.preferences ?? null,
-      recommendedProperties: insertRecommendation.recommendedProperties ?? null,
-      confidence: insertRecommendation.confidence ?? null,
+      userId: insertRecommendation.userId,
+      preferences: insertRecommendation.preferences,
+      recommendedProperties: insertRecommendation.recommendedProperties,
+      confidence: insertRecommendation.confidence
     };
     this.aiRecommendations.set(id, recommendation);
     return recommendation;
