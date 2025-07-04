@@ -4,7 +4,7 @@
     "target": "ES2020",
     "module": "commonjs",
     "moduleResolution": "node",
-    "rootDir": ".",
+    "rootDir": ".",              // ✅ root is the "server" folder
     "outDir": "dist/server",                          // base for path aliasing
     "paths": {
       "@shared/*": ["shared/*"]              // alias works with tsc-alias
