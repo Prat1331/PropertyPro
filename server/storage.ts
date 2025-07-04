@@ -84,7 +84,7 @@ export class MemStorage implements IStorage {
       propertyType: "Apartment",
       bedrooms: 3,
       bathrooms: 3,
-      area: 1045 - 2250,
+      area: 2250,
       location: "Sector 85, Faridabad",
       sector: "Sector 85",
       city: "Faridabad",
@@ -179,7 +179,7 @@ export class MemStorage implements IStorage {
     ];
 
     sampleProperties.forEach((p) => this.createProperty(p));
-    console.log("✅ Sample data loaded:", sampleProperties.map((p: InsertProperty) => p.title));
+    console.log("✅ Sample data loaded:", sampleProperties.map((p) => (p as InsertProperty).title));
   }
 
   async getUser(id: number): Promise<User | undefined> {
