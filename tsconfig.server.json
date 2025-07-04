@@ -5,8 +5,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "rootDir": ".",
-    "outDir": "dist",                      // compiled files output here
-    "baseUrl": ".",                          // base for path aliasing
+    "outDir": "./dist",                          // base for path aliasing
     "paths": {
       "@shared/*": ["shared/*"]              // alias works with tsc-alias
     },

@@ -106,4 +106,4 @@ app.use((req, res, next) => {
 
 console.log("✅ Server entry is being built");
 
-export {};
+export default {};
