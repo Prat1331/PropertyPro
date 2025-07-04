@@ -6,3 +6,9 @@ cmds = ["npm install"]
 
 [phases.build]
 cmds = ["npm run build"]
+
+[phases.start]
+cmds = ["npm start"]
+
+[build]
+ignore = ["dist/"]  # 🔥 This line prevents Railway from deleting your build output!
